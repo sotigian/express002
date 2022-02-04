@@ -1,9 +1,12 @@
 let mysql = require("mysql2");
+const db = require('../models/index'); // eqiuivalent mysql
+const SotirisGiannakopoulos = db.sequelize.models.SotirisGiannakopoulos  // Model SotirisGiannakopoulos
 var express = require('express');
 var router = express.Router();
 
 router.get('/', async function (req, res) {
-    let customers = await getCustomers();
+    //let customers = await getCustomers();
+    let customers = await SotirisGiannakopoulos.findAll();
     console.log(customers);
     res.render('customers/list',
         {
